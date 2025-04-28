@@ -173,8 +173,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgements
 
-- [Jules White](https://engineering.vanderbilt.edu/bio/jules-white) - Course Instructor
-- [Coursera](https://www.coursera.org/) - Course Platform
+- [Jules White](https://www.coursera.org/instructor/juleswhite) - Course Instructor
+- [Coursera](https://www.coursera.org/learn/ai-agents-java) - Course Platform
 - The developers of the LLM libraries used in this course
 
 ---
