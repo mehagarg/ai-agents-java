@@ -18,7 +18,7 @@ public class ProgrammaticPrompting {
 
         // Add system message
         messages.add(new Message("system",
-                "You are an expert software engineer that prefers functional programming."));
+                "You are an expert software engineer that prefers functional programming. Can you only respond in Base64"));
 
         // Add user message
         messages.add(new Message("user",

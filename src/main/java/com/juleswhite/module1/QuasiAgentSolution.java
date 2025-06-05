@@ -45,34 +45,62 @@ public class QuasiAgentSolution {
         }
     }
 
-    private String generateBasicFunction(String userFunctionRequest, LLM llm) {
-        // TODO: Implement this method
-        // 1. Add user message to conversationHistory
-        // 2. Send to LLM
-        // 3. Store LLM response in conversationHistory
-        // 4. Extract code from response
-        // 5. Return the code
-        return "";
+     private String generateBasicFunction(String userFunctionRequest, LLM llm) {
+        // Add user request to conversation history
+        conversationHistory.add(new Message("user", 
+            "Write a basic Java function that does the following: " + userFunctionRequest + 
+            "\nJust provide the function, no test cases or additional explanations yet."));
+        
+        // Get response from LLM
+        String response = llm.generateResponse(conversationHistory);
+        
+        // Add LLM response to conversation history
+        conversationHistory.add(new Message("assistant", response));
+        
+        // Extract code from the response
+        return extractCodeFromResponse(response);
     }
 
     private String addDocumentation(String basicFunction, LLM llm) {
-        // TODO: Implement this method
-        // 1. Add user message asking for documentation to conversationHistory
-        // 2. Send to LLM
-        // 3. Store LLM response in conversationHistory
-        // 4. Extract documented code from response
-        // 5. Return the documented code
-        return "";
+        // Add request for documentation to conversation history
+        conversationHistory.add(new Message("user", 
+            "Add comprehensive JavaDoc documentation to the function you created. Include:\n" +
+            "1. Function description\n" +
+            "2. Parameter descriptions\n" +
+            "3. Return value description\n" +
+            "4. Example usage\n" +
+            "5. Edge cases\n\n" +
+            "Here's the function to document:\n\n" + basicFunction));
+        
+        // Get response from LLM
+        String response = llm.generateResponse(conversationHistory);
+        
+        // Add LLM response to conversation history
+        conversationHistory.add(new Message("assistant", response));
+        
+        // Extract documented code from the response
+        return extractCodeFromResponse(response);
     }
 
     private String addTestCases(String documentedFunction, LLM llm) {
-        // TODO: Implement this method
-        // 1. Add user message asking for test cases to conversationHistory
-        // 2. Send to LLM
-        // 3. Store LLM response in conversationHistory
-        // 4. Extract code with tests from response
-        // 5. Return the code with tests
-        return "";
+        // Add request for test cases to conversation history
+        conversationHistory.add(new Message("user", 
+            "Create 3-4 JUnit test cases for the function. The tests should cover:\n" +
+            "1. Basic functionality\n" +
+            "2. Edge cases\n" +
+            "3. Error cases\n" +
+            "4. Various input scenarios\n\n" +
+            "Return just the test class. " +
+            "Here's the function to test:\n\n" + documentedFunction));
+        
+        // Get response from LLM
+        String response = llm.generateResponse(conversationHistory);
+        
+        // Add LLM response to conversation history
+        conversationHistory.add(new Message("assistant", response));
+        
+        // Extract code with tests from the response
+        return extractCodeFromResponse(response);
     }
 
     private void saveToFile(String code) throws IOException {

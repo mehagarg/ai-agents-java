@@ -40,3 +40,6 @@ public class MemoryExample {
         System.out.println(secondResponse);
     }
 }
+
+
+// https://www.coursera.org/learn/ai-agents-java/ungradedWidget/Dde9O/giving-agents-memory
